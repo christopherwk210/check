@@ -1,0 +1,23 @@
+{
+  "name": "check",
+  "version": "1.0.0",
+  "description": "A JavaScript game engine built on checkboxes.",
+  "scripts": {
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherwk210/check.git"
+  },
+  "author": "Chris Anselmo <christopherwk210@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christopherwk210/check/issues"
+  },
+  "homepage": "https://github.com/christopherwk210/check#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.5.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}
