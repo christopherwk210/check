@@ -6,13 +6,16 @@ class Check {
   /**
    * Initializes the game and appends game board to the DOM.
    * @param {Element} element Existing element to append the game board to.
-   * @param {Number} width How many checkboxes wide the game board should be.
-   * @param {Number} height How many checkboxes high the game board should be.
+   * @param {Object} options Game setup information. 
+   * @param {Number} options.width How many checkboxes wide the game board should be.
+   * @param {Number} options.height How many checkboxes high the game board should be.
    */
-  constructor(element, width, height) {
+  constructor(element, options) {
+    if (!element) { throw new TypeError("Check: You must provide an element."); }
+
     this.element = element;
-    this.width = width;
-    this.height = height;
+    this.width = options.width;
+    this.height = options.height;
 
     this.gameBoard = this.createGameBoard(this.width, this.height);
     this.gameBoardContainer = this.bootstrapGameBoard(this.element, this.gameBoard);
@@ -52,6 +55,7 @@ class Check {
    */
   bootstrapGameBoard(element, gameBoard) {
     let gameBoardElement = document.createElement('div');
+
     gameBoard.forEach(row => {
       let gameBoardRowElement = document.createElement('div');
 
@@ -61,6 +65,8 @@ class Check {
       
       gameBoardElement.appendChild(gameBoardRowElement);
     });
+
+    element.appendChild(gameBoardElement);
   }
 
   /**
