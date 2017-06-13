@@ -20,6 +20,7 @@ export class Check {
    */
   constructor(element: Element, options: any) {
     if (!element) { throw new TypeError("Check: You must provide an element."); }
+    if (!options) { throw new TypeError("Check: You must provide valid options."); }
 
     this.element = element;
     this.width = options.width;
