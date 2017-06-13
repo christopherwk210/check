@@ -13,13 +13,16 @@ class Check {
     this.element = element;
     this.width = width;
     this.height = height;
+
+    this.gameBoard = this.createGameBoard(this.width, this.height);
+    this.gameBoardContainer = this.bootstrapGameBoard(this.element, this.gameBoard);
   }
 
   /**
    * Returns a grid of checkboxes.
    * @param {Number} width How many checkboxes wide the game board should be.
    * @param {Number} height How many checkboxes high the game board should be.
-   * @returns {Array}
+   * @returns {Array} The game board array of checkbox elements.
    */
   createGameBoard(width, height) {
     let gameBoard = [];
@@ -39,6 +42,25 @@ class Check {
     }
 
     return gameBoard;
+  }
+
+  /**
+   * Appends a board to an element on the DOM.
+   * @param {Element} element DOM element to append game board to.
+   * @param {Array} gameBoard Valid game board grid.
+   * @returns {Element} The containing game board div.
+   */
+  bootstrapGameBoard(element, gameBoard) {
+    let gameBoardElement = document.createElement('div');
+    gameBoard.forEach(row => {
+      let gameBoardRowElement = document.createElement('div');
+
+      row.forEach(checkbox => {
+        gameBoardRowElement.appendChild(checkbox);
+      });
+      
+      gameBoardElement.appendChild(gameBoardRowElement);
+    });
   }
 
   /**
