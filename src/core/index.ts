@@ -2,15 +2,23 @@
  * This class is responsible for setting up and maintaining
  * the game and all assets.
  */
-class Check {
+export class Check {
+
+  element: Element;
+  width: number;
+  height: number;
+
+  gameBoard: Array<any>;
+  gameBoardContainer: Element;
+
   /**
    * Initializes the game and appends game board to the DOM.
    * @param {Element} element Existing element to append the game board to.
    * @param {Object} options Game setup information. 
-   * @param {Number} options.width How many checkboxes wide the game board should be.
-   * @param {Number} options.height How many checkboxes high the game board should be.
+   * @param {number} options.width How many checkboxes wide the game board should be.
+   * @param {number} options.height How many checkboxes high the game board should be.
    */
-  constructor(element, options) {
+  constructor(element: Element, options: any) {
     if (!element) { throw new TypeError("Check: You must provide an element."); }
 
     this.element = element;
@@ -23,11 +31,11 @@ class Check {
 
   /**
    * Returns a grid of checkboxes.
-   * @param {Number} width How many checkboxes wide the game board should be.
-   * @param {Number} height How many checkboxes high the game board should be.
+   * @param {number} width How many checkboxes wide the game board should be.
+   * @param {number} height How many checkboxes high the game board should be.
    * @returns {Array} The game board array of checkbox elements.
    */
-  createGameBoard(width, height) {
+  createGameBoard(width:number, height:number):Array<any> {
     let gameBoard = [];
     let currentRow = [];
 
@@ -53,13 +61,13 @@ class Check {
    * @param {Array} gameBoard Valid game board grid.
    * @returns {Element} The containing game board div.
    */
-  bootstrapGameBoard(element, gameBoard) {
+  bootstrapGameBoard(element: Element, gameBoard: Array<any>):Element {
     let gameBoardElement = document.createElement('div');
 
     gameBoard.forEach(row => {
       let gameBoardRowElement = document.createElement('div');
 
-      row.forEach(checkbox => {
+      row.forEach((checkbox:Element) => {
         gameBoardRowElement.appendChild(checkbox);
       });
       
@@ -67,13 +75,15 @@ class Check {
     });
 
     element.appendChild(gameBoardElement);
+
+    return gameBoardElement;
   }
 
   /**
    * Define a custom update function that triggers every game tick.
    * @param {Function} callback Function to be called every game tick.
    */
-  set update(callback) {
+  set update(callback:Function) {
     this.update = callback;
   }
 }
