@@ -1,1 +1,1 @@
-export { Check } from './core/index'
+export { Check } from './core/index';
