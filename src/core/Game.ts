@@ -19,7 +19,7 @@ export class Game {
   /** Timing control */
   _currentTime: number;
   _lastTime: number;
-  _delta: number = 0;
+  _deltaTime: number = 0;
 
   /**
    * Initializes the game and appends game board to the DOM.
@@ -127,7 +127,7 @@ export class Game {
   gameUpdate() {
     /** Calculate delta time */
     this._currentTime = (new Date()).getTime();
-    this._delta = (this._currentTime - this._lastTime) / 1000;
+    this._deltaTime = (this._currentTime - this._lastTime) / 1000;
     
     /** Clear the game board */
 
@@ -139,6 +139,14 @@ export class Game {
     this._lastTime = this._currentTime;
     window.requestAnimationFrame(this.gameUpdate);
   }
+
+  /**
+   * Returns the delta time of the game loop.
+   * @returns {number} Delta time.
+   */
+  get deltaTime():number { return this._deltaTime; }
+
+  set deltaTime(a) { throw new Error('Delta time is a readonly property.'); }
 
   /**
    * Returns the width of the game board.
