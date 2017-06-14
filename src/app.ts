@@ -1,3 +1,5 @@
+import './polyfills';
+
 import { Game, Sprite } from './core';
 
 declare var global:any;
