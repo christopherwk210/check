@@ -29,12 +29,14 @@ export class Check {
   constructor(element: Element, options: any = defaultOptions) {
     if (!element) { throw new TypeError("Check: You must provide an element."); }
 
+    /** Assign options */
     this.element = element;
     this.width = options.width || defaultOptions.width;
     this.height = options.height || defaultOptions.height;
     this.collapse = options.collapse || defaultOptions.collapse;
     this.hideCursor = options.hideCursor || defaultOptions.hideCursor;
 
+    /** Set up the game board */
     this.gameBoard = this.createGameBoard(this.width, this.height);
     this.gameBoardContainer = this.bootstrapGameBoard(this.element, this.gameBoard);
   }
@@ -47,15 +49,20 @@ export class Check {
    */
   createCheckboxElement(id:string = '', css:string = ''):Element {
     let checkbox = document.createElement('input');
+    
+    /** Set up element properties */
     checkbox.type = 'checkbox';
     checkbox.id = id;
     checkbox.style.cssText = css;
+
+    /** Prevent default user interactions */
     checkbox.addEventListener('click', e => {
       e.preventDefault();
     });
     checkbox.addEventListener('keydown', e => {
       e.preventDefault();
     });
+
     return checkbox;
   }
 
@@ -71,13 +78,11 @@ export class Check {
 
     for (let x = 0; x < height; x++) {
       currentRow = [];
-
       for (let y = 0; y < width; y++) {
         let checkboxStyle = (this.hideCursor ? 'cursor:none;' : '') + (this.collapse ? 'padding:0;margin:0;' : '');
         let checkbox = this.createCheckboxElement(`${x}${y}`, checkboxStyle);
         currentRow.push(checkbox);
       }
-
       gameBoard.push(currentRow);
     }
 
@@ -94,6 +99,7 @@ export class Check {
     let gameBoardElement = document.createElement('div');
     gameBoardElement.style.cssText = 'display:inline-block;' + (this.hideCursor ? 'cursor:none;' : '');
 
+    /** Create the game board rows */
     gameBoard.forEach(row => {
       let gameBoardRowElement = document.createElement('div');
       gameBoardRowElement.style.cssText = this.collapse ? 'line-height: 0.5em;' : '';
@@ -105,6 +111,7 @@ export class Check {
       gameBoardElement.appendChild(gameBoardRowElement);
     });
 
+    /** Add the game board to the DOM */
     element.appendChild(gameBoardElement);
 
     return gameBoardElement;
