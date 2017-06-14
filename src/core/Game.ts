@@ -125,9 +125,10 @@ export class Game {
   }
 
   /**
-   * Main game loop
+   * Main game loop.
+   * @param {Function} [tick] Optional game update logic.
    */
-  gameUpdate() {
+  gameUpdate(tick:Function = function(){}) {
     /** Calculate delta time */
     this._currentTime = (new Date()).getTime();
     this._deltaTime = (this._currentTime - this._lastTime) / 1000;
@@ -136,12 +137,13 @@ export class Game {
     this._clearBoard();
 
     /** Process game object logics */
+    tick();
 
     /** Process drawing */
 
     /** Loop */
     this._lastTime = this._currentTime;
-    window.requestAnimationFrame(this.gameUpdate);
+    global.requestAnimationFrame(this.gameUpdate);
   }
 
   /**
