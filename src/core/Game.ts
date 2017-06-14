@@ -43,7 +43,7 @@ export class Game {
    * @param {boolean} [options.useRadio=false] Use radio buttons instead of checkboxes.
    */
   constructor(element: Element, options: any = defaultOptions) {
-    if (!element) { throw new TypeError("You must provide an element to a Check Game."); }
+    if (!element) { throw new TypeError('You must provide an element to a Check Game.'); }
 
     /** Assign options */
     this._element = element;
@@ -153,6 +153,7 @@ export class Game {
     this._update();
 
     /** Process drawing */
+    this._graphics.draw();
 
     /** Loop */
     this._lastTime = this._currentTime;
@@ -193,4 +194,12 @@ export class Game {
   get height():number { return this._height; }
 
   set height(a) { throw new Error('Height is a readonly property.'); }
+
+  /**
+   * Returns the graphics reference.
+   * @returns {Graphics} Graphics object reference.
+   */
+  get graphics():Graphics { return this._graphics; }
+
+  set graphics(a) { throw new Error('Graphics is a readonly property.'); }
 }
