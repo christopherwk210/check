@@ -11,6 +11,7 @@ export class Check {
   width: number;
   height: number;
   collapse: boolean;
+  hideCursor: boolean;
 
   /** Game board control */
   gameBoard: Array<any>;
@@ -19,9 +20,11 @@ export class Check {
   /**
    * Initializes the game and appends game board to the DOM.
    * @param {Element} element Existing element to append the game board to.
-   * @param {Object} options Game setup information. 
-   * @param {number} options.width How many checkboxes wide the game board should be.
-   * @param {number} options.height How many checkboxes high the game board should be.
+   * @param {Object} [options] Game setup information. 
+   * @param {number} [options.width=15] How many checkboxes wide the game board should be.
+   * @param {number} [options.height=15] How many checkboxes high the game board should be.
+   * @param {boolean} [options.collapse=false] Whether the checkboxes should have margins.
+   * @param {boolean} [options.hideCursor=false] Hide the cursor over the game board.
    */
   constructor(element: Element, options: any = defaultOptions) {
     if (!element) { throw new TypeError("Check: You must provide an element."); }
@@ -30,6 +33,7 @@ export class Check {
     this.width = options.width || defaultOptions.width;
     this.height = options.height || defaultOptions.height;
     this.collapse = options.collapse || defaultOptions.collapse;
+    this.hideCursor = options.hideCursor || defaultOptions.hideCursor;
 
     this.gameBoard = this.createGameBoard(this.width, this.height);
     this.gameBoardContainer = this.bootstrapGameBoard(this.element, this.gameBoard);
@@ -69,7 +73,8 @@ export class Check {
       currentRow = [];
 
       for (let y = 0; y < width; y++) {
-        let checkbox = this.createCheckboxElement(`${x}${y}`, this.collapse ? 'padding:0;margin:0;' : '');
+        let checkboxStyle = (this.hideCursor ? 'cursor:none;' : '') + (this.collapse ? 'padding:0;margin:0;' : '');
+        let checkbox = this.createCheckboxElement(`${x}${y}`, checkboxStyle);
         currentRow.push(checkbox);
       }
 
@@ -87,6 +92,7 @@ export class Check {
    */
   bootstrapGameBoard(element: Element, gameBoard: Array<any>):Element {
     let gameBoardElement = document.createElement('div');
+    gameBoardElement.style.cssText = 'display:inline-block;' + (this.hideCursor ? 'cursor:none;' : '');
 
     gameBoard.forEach(row => {
       let gameBoardRowElement = document.createElement('div');
