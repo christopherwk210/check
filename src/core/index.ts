@@ -29,9 +29,30 @@ export class Check {
     this.element = element;
     this.width = options.width || defaultOptions.width;
     this.height = options.height || defaultOptions.height;
+    this.collapse = options.collapse || defaultOptions.collapse;
 
     this.gameBoard = this.createGameBoard(this.width, this.height);
     this.gameBoardContainer = this.bootstrapGameBoard(this.element, this.gameBoard);
+  }
+
+  /**
+   * Creates a checkbox element ready to be used by Check.
+   * @param {string} [id=''] ID to assign to the element.
+   * @param {string} [css=''] CSS text to assign to the element.
+   * @returns {Element} Checkbox element.
+   */
+  createCheckboxElement(id:string = '', css:string = ''):Element {
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = id;
+    checkbox.style.cssText = css;
+    checkbox.addEventListener('click', e => {
+      e.preventDefault();
+    });
+    checkbox.addEventListener('keydown', e => {
+      e.preventDefault();
+    });
+    return checkbox;
   }
 
   /**
@@ -48,9 +69,7 @@ export class Check {
       currentRow = [];
 
       for (let y = 0; y < width; y++) {
-        let checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = `${x}${y}`;
+        let checkbox = this.createCheckboxElement(`${x}${y}`, this.collapse ? 'padding:0;margin:0;' : '');
         currentRow.push(checkbox);
       }
 
@@ -71,6 +90,7 @@ export class Check {
 
     gameBoard.forEach(row => {
       let gameBoardRowElement = document.createElement('div');
+      gameBoardRowElement.style.cssText = this.collapse ? 'line-height: 0.5em;' : '';
 
       row.forEach((checkbox:Element) => {
         gameBoardRowElement.appendChild(checkbox);
