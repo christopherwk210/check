@@ -1,7 +1,8 @@
-import { Game } from './core';
+import { Game, Sprite } from './core';
 
 let Check:any = {
-  Game: Game
+  Game: Game,
+  Sprite: Sprite
 };
 
 (<any>window).Check = Check;
