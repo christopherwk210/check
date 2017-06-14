@@ -27,7 +27,7 @@ export class Game {
    * @param {boolean} [options.hideCursor=false] Hide the cursor over the game board.
    */
   constructor(element: Element, options: any = defaultOptions) {
-    if (!element) { throw new TypeError("Check: You must provide an element."); }
+    if (!element) { throw new TypeError("You must provide an element to a Check Game."); }
 
     /** Assign options */
     this.element = element;
