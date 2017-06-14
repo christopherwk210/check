@@ -116,12 +116,4 @@ export class Check {
 
     return gameBoardElement;
   }
-
-  /**
-   * Define a custom update function that triggers every game tick.
-   * @param {Function} callback Function to be called every game tick.
-   */
-  set update(callback:Function) {
-    this.update = callback;
-  }
 }
