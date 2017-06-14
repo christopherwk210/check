@@ -1,13 +1,18 @@
+import { defaultOptions } from './defaultOptions';
+
 /**
  * This class is responsible for setting up and maintaining
  * the game and all assets.
  */
 export class Check {
 
+  /** Options */
   element: Element;
   width: number;
   height: number;
+  collapse: boolean;
 
+  /** Game board control */
   gameBoard: Array<any>;
   gameBoardContainer: Element;
 
@@ -18,13 +23,12 @@ export class Check {
    * @param {number} options.width How many checkboxes wide the game board should be.
    * @param {number} options.height How many checkboxes high the game board should be.
    */
-  constructor(element: Element, options: any) {
+  constructor(element: Element, options: any = defaultOptions) {
     if (!element) { throw new TypeError("Check: You must provide an element."); }
-    if (!options) { throw new TypeError("Check: You must provide valid options."); }
 
     this.element = element;
-    this.width = options.width;
-    this.height = options.height;
+    this.width = options.width || defaultOptions.width;
+    this.height = options.height || defaultOptions.height;
 
     this.gameBoard = this.createGameBoard(this.width, this.height);
     this.gameBoardContainer = this.bootstrapGameBoard(this.element, this.gameBoard);
