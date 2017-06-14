@@ -1,8 +1,7 @@
 import { defaultOptions } from './utils/defaultOptions';
 
 /**
- * This class is responsible for setting up and maintaining
- * the game and all assets.
+ * Game class, responsible for creating the game and managing draws.
  */
 export class Game {
 
@@ -16,6 +15,11 @@ export class Game {
   /** Game board control */
   _gameBoard: Array<any>;
   _gameBoardContainer: Element;
+
+  /** Timing control */
+  _currentTime: number;
+  _lastTime: number;
+  _delta: number = 0;
 
   /**
    * Initializes the game and appends game board to the DOM.
@@ -115,6 +119,25 @@ export class Game {
     element.appendChild(gameBoardElement);
 
     return gameBoardElement;
+  }
+
+  /**
+   * Main game loop
+   */
+  gameUpdate() {
+    /** Calculate delta time */
+    this._currentTime = (new Date()).getTime();
+    this._delta = (this._currentTime - this._lastTime) / 1000;
+    
+    /** Clear the game board */
+
+    /** Process game object logics */
+
+    /** Process drawing */
+
+    /** Loop */
+    this._lastTime = this._currentTime;
+    window.requestAnimationFrame(this.gameUpdate);
   }
 
   /**
