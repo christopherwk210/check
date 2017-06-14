@@ -1,12 +1,13 @@
 import './polyfills';
 
-import { Game, Sprite } from './core';
+import { Game, Sprite, Graphics } from './core';
 
 declare var global:any;
 
 let Check:any = {
   Game: Game,
-  Sprite: Sprite
+  Sprite: Sprite,
+  Graphics: Graphics
 };
 
 global.Check = Check;
