@@ -6,8 +6,8 @@ import { SpriteData } from './spriteData.interface';
 export class Sprite {
 
   /** Options */
-  spriteData:SpriteData;
-  precise:boolean;
+  _spriteData:SpriteData;
+  _precise:boolean;
 
   /** Properties */
   _width:number = 0;
@@ -19,11 +19,11 @@ export class Sprite {
    * @param {boolean} [precise=false] Use precise collision checking.
    */
   constructor(spriteData:SpriteData, precise:boolean = false) {
-    this.spriteData = spriteData;
-    this.precise = precise;
+    this._spriteData = spriteData;
+    this._precise = precise;
 
     /** Calculate the width and height of the sprite */
-    this.spriteData.points.forEach(pointRow => {
+    this._spriteData.points.forEach(pointRow => {
       this._width = pointRow.length > this._width ? pointRow.length : this._width;
       this._height++;
     });
