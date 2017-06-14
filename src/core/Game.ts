@@ -1,4 +1,5 @@
 import { defaultOptions } from './utils/defaultOptions';
+import { Graphics } from './graphics';
 
 /**
  * Game class, responsible for creating the game and managing draws.
@@ -26,6 +27,10 @@ export class Game {
   _lastTime: number;
   _deltaTime: number = 0;
 
+  /** Graphics */
+
+  _graphics: Graphics;
+
   /**
    * Initializes the game and appends game board to the DOM.
    * @param {Element} element Existing element to append the game board to.
@@ -52,6 +57,9 @@ export class Game {
     /** Set up the game board */
     this._gameBoard = this._createGameBoard(this._width, this._height);
     this._gameBoardContainer = this._bootstrapGameBoard(this._element, this._gameBoard);
+
+    /** Set up graphics */
+    this._graphics = new Graphics(this._width, this._height, this._gameBoard);
   }
 
   /**
