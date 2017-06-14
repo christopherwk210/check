@@ -5,5 +5,6 @@ export const defaultOptions = {
   width: 15,
   height: 15,
   collapse: false,
-  hideCursor: false
+  hideCursor: false,
+  update: function(){}
 }

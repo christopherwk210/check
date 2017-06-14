@@ -12,6 +12,7 @@ export class Game {
   _height: number;
   _collapse: boolean;
   _hideCursor: boolean;
+  _update: Function;
 
   /** Game board control */
 
@@ -32,6 +33,7 @@ export class Game {
    * @param {number} [options.height=15] How many checkboxes high the game board should be.
    * @param {boolean} [options.collapse=false] Whether the checkboxes should have margins.
    * @param {boolean} [options.hideCursor=false] Hide the cursor over the game board.
+   * @param {Function} [options.update=function(){}] Function to execute every game frame before all other calculations.
    */
   constructor(element: Element, options: any = defaultOptions) {
     if (!element) { throw new TypeError("You must provide an element to a Check Game."); }
@@ -42,6 +44,7 @@ export class Game {
     this._height = options.height || defaultOptions.height;
     this._collapse = options.collapse || defaultOptions.collapse;
     this._hideCursor = options.hideCursor || defaultOptions.hideCursor;
+    this._update = options.update || defaultOptions.update;
 
     /** Set up the game board */
     this._gameBoard = this._createGameBoard(this._width, this._height);
@@ -128,8 +131,6 @@ export class Game {
    * Main game loop.
    */
   gameUpdate() {
-    console.log(this);
-
     /** Calculate delta time */
     this._currentTime = (new Date()).getTime();
     this._deltaTime = (this._currentTime - this._lastTime) / 1000;
@@ -138,6 +139,7 @@ export class Game {
     this._clearBoard();
 
     /** Process game object logics */
+    this._update();
 
     /** Process drawing */
 

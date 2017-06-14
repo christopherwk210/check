@@ -6,12 +6,12 @@ import { SpriteData } from './spriteData.interface';
 export class Sprite {
 
   /** Options */
-  _spriteData:SpriteData;
-  _precise:boolean;
+  _spriteData: SpriteData;
+  _precise: boolean;
 
   /** Properties */
-  _width:number = 0;
-  _height:number = 0;
+  _width: number = 0;
+  _height: number = 0;
 
   /**
    * 
