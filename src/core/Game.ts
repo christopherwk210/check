@@ -6,6 +6,7 @@ import { defaultOptions } from './utils/defaultOptions';
 export class Game {
 
   /** Options */
+
   _element: Element;
   _width: number;
   _height: number;
@@ -13,10 +14,12 @@ export class Game {
   _hideCursor: boolean;
 
   /** Game board control */
+
   _gameBoard: Array<any>;
   _gameBoardContainer: Element;
 
   /** Timing control */
+
   _currentTime: number;
   _lastTime: number;
   _deltaTime: number = 0;
@@ -41,8 +44,8 @@ export class Game {
     this._hideCursor = options.hideCursor || defaultOptions.hideCursor;
 
     /** Set up the game board */
-    this._gameBoard = this.createGameBoard(this._width, this._height);
-    this._gameBoardContainer = this.bootstrapGameBoard(this._element, this._gameBoard);
+    this._gameBoard = this._createGameBoard(this._width, this._height);
+    this._gameBoardContainer = this._bootstrapGameBoard(this._element, this._gameBoard);
   }
 
   /**
@@ -51,7 +54,7 @@ export class Game {
    * @param {string} [css=''] CSS text to assign to the element.
    * @returns {Element} Checkbox element.
    */
-  createCheckboxElement(id:string = '', css:string = ''):Element {
+  _createCheckboxElement(id:string = '', css:string = ''):Element {
     let checkbox = document.createElement('input');
     
     /** Set up element properties */
@@ -76,7 +79,7 @@ export class Game {
    * @param {number} height How many checkboxes high the game board should be.
    * @returns {Array} The game board array of checkbox elements.
    */
-  createGameBoard(width:number, height:number):Array<any> {
+  _createGameBoard(width:number, height:number):Array<any> {
     let gameBoard = [];
     let currentRow = [];
 
@@ -84,7 +87,7 @@ export class Game {
       currentRow = [];
       for (let y = 0; y < width; y++) {
         let checkboxStyle = (this._hideCursor ? 'cursor:none;' : '') + (this._collapse ? 'padding:0;margin:0;' : '');
-        let checkbox = this.createCheckboxElement(`${x}${y}`, checkboxStyle);
+        let checkbox = this._createCheckboxElement(`${x}${y}`, checkboxStyle);
         currentRow.push(checkbox);
       }
       gameBoard.push(currentRow);
@@ -99,7 +102,7 @@ export class Game {
    * @param {Array} gameBoard Valid game board grid.
    * @returns {Element} The containing game board div.
    */
-  bootstrapGameBoard(element: Element, gameBoard: Array<any>):Element {
+  _bootstrapGameBoard(element: Element, gameBoard: Array<any>):Element {
     let gameBoardElement = document.createElement('div');
     gameBoardElement.style.cssText = 'display:inline-block;' + (this._hideCursor ? 'cursor:none;' : '');
 
@@ -130,6 +133,7 @@ export class Game {
     this._deltaTime = (this._currentTime - this._lastTime) / 1000;
     
     /** Clear the game board */
+    this._clearBoard();
 
     /** Process game object logics */
 
@@ -138,6 +142,17 @@ export class Game {
     /** Loop */
     this._lastTime = this._currentTime;
     window.requestAnimationFrame(this.gameUpdate);
+  }
+
+  /**
+   * Unchecks all checkboxes on the game board.
+   */
+  _clearBoard() {
+    this._gameBoard.forEach(boardRow => {
+      boardRow.forEach((checkbox:any) => {
+        checkbox.checked = false;
+      });
+    });
   }
 
   /**
