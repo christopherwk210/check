@@ -116,4 +116,20 @@ export class Game {
 
     return gameBoardElement;
   }
+
+  /**
+   * Returns the width of the game board.
+   * @returns {number} Game board width.
+   */
+  get width():number { return this._width; }
+
+  set width(a) { throw new Error('Width is a readonly property.'); }
+
+  /**
+   * Returns the height of the game board.
+   * @returns {number} Game board height.
+   */
+  get height():number { return this._height; }
+
+  set height(a) { throw new Error('Height is a readonly property.'); }
 }

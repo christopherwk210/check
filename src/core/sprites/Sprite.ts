@@ -49,23 +49,15 @@ export class Sprite {
    * Returns the width of the sprite.
    * @returns {number} Sprite width.
    */
-  get width():number {
-    return this._width;
-  }
+  get width():number { return this._width; }
 
-  set width(a) {
-    throw new Error('Width is a readonly property.');
-  }
+  set width(a) { throw new Error('Width is a readonly property.'); }
 
   /**
    * Returns the height of the sprite.
    * @returns {number} Sprite height.
    */
-  get height():number {
-    return this._height;
-  }
+  get height():number { return this._height; }
 
-  set height(a) {
-    throw new Error('Height is a readonly property.');
-  }
+  set height(a) { throw new Error('Height is a readonly property.'); }
 }
