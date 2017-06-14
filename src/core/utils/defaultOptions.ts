@@ -6,5 +6,6 @@ export const defaultOptions = {
   height: 15,
   collapse: false,
   hideCursor: false,
-  update: function(){}
+  update: function(){},
+  useRadio: false
 }

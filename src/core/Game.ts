@@ -13,6 +13,7 @@ export class Game {
   _collapse: boolean;
   _hideCursor: boolean;
   _update: Function;
+  _useRadio: boolean;
 
   /** Game board control */
 
@@ -34,6 +35,7 @@ export class Game {
    * @param {boolean} [options.collapse=false] Whether the checkboxes should have margins.
    * @param {boolean} [options.hideCursor=false] Hide the cursor over the game board.
    * @param {Function} [options.update=function(){}] Function to execute every game frame before all other calculations.
+   * @param {boolean} [options.useRadio=false] Use radio buttons instead of checkboxes.
    */
   constructor(element: Element, options: any = defaultOptions) {
     if (!element) { throw new TypeError("You must provide an element to a Check Game."); }
@@ -45,6 +47,7 @@ export class Game {
     this._collapse = options.collapse || defaultOptions.collapse;
     this._hideCursor = options.hideCursor || defaultOptions.hideCursor;
     this._update = options.update || defaultOptions.update;
+    this._useRadio = options.useRadio || defaultOptions.useRadio;
 
     /** Set up the game board */
     this._gameBoard = this._createGameBoard(this._width, this._height);
@@ -53,15 +56,15 @@ export class Game {
 
   /**
    * Creates a checkbox element ready to be used by Check.
-   * @param {string} [id=''] ID to assign to the element.
-   * @param {string} [css=''] CSS text to assign to the element.
+   * @param {string} [id] ID to assign to the element.
+   * @param {string} [css] CSS text to assign to the element.
    * @returns {Element} Checkbox element.
    */
   _createCheckboxElement(id:string = '', css:string = ''):Element {
     let checkbox = document.createElement('input');
     
     /** Set up element properties */
-    checkbox.type = 'checkbox';
+    checkbox.type = this._useRadio ? 'radio' : 'checkbox';
     checkbox.id = id;
     checkbox.style.cssText = css;
 
