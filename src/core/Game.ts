@@ -1,6 +1,8 @@
 import { defaultOptions } from './utils/defaultOptions';
 import { Graphics } from './graphics';
 
+declare var global:any;
+
 /**
  * Game class, responsible for creating the game and managing draws.
  */
@@ -26,6 +28,10 @@ export class Game {
   _currentTime: number;
   _lastTime: number;
   _deltaTime: number = 0;
+
+  /** Mouse control */
+
+  _currentCheckboxHovering: Element;
 
   /** Graphics */
 
@@ -84,6 +90,11 @@ export class Game {
       e.preventDefault();
     });
 
+    /** Add mouse over interaction */
+    checkbox.addEventListener('mouseover', e => {
+      this._currentCheckboxHovering = checkbox;
+    });
+
     return checkbox;
   }
 
@@ -101,7 +112,7 @@ export class Game {
       currentRow = [];
       for (let y = 0; y < width; y++) {
         let checkboxStyle = (this._hideCursor ? 'cursor:none;' : '') + (this._collapse ? 'padding:0;margin:0;' : '');
-        let checkbox = this._createCheckboxElement(`${x}${y}`, checkboxStyle);
+        let checkbox = this._createCheckboxElement(`${x}-${y}`, checkboxStyle);
         currentRow.push(checkbox);
       }
       gameBoard.push(currentRow);
@@ -176,6 +187,20 @@ export class Game {
         checkbox.checked = false;
       });
     });
+  }
+
+  get mousePosition():any {
+    let mousePosition:any = {
+      x: 0,
+      y: 0
+    }
+    if (this._currentCheckboxHovering) {
+      mousePosition.y = Number(this._currentCheckboxHovering.id.split('-')[0]);
+      mousePosition.x = Number(this._currentCheckboxHovering.id.split('-')[1]);
+      return mousePosition;
+    } else {
+      return mousePosition;
+    }
   }
 
   /**
