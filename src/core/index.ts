@@ -1,3 +1,3 @@
 export * from './Game';
-export * from './sprites/Sprite';
-export * from './graphics/Graphics';
+export * from './sprites';
+export * from './graphics';

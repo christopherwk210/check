@@ -1,4 +1,4 @@
-import { Sprite } from '../sprites/Sprite';
+import { Sprite } from '../sprites';
 
 /**
  * Contains graphical/drawing related functions.
