@@ -1,3 +1,5 @@
+import { Sprite } from '../sprites/Sprite';
+
 /**
  * Contains graphical/drawing related functions.
  */
@@ -28,7 +30,13 @@ export class Graphics {
    */
   draw() {
     this._drawBatch.forEach(call => {
-      this._gameBoard[call.y][call.x].checked = true;
+      if ((call.y >= 0) && (call.x >= 0)) {
+        if (call.y < this._gameBoard.length) {
+          if (call.x < this._gameBoard[call.y].length) {
+            this._gameBoard[call.y][call.x].checked = true;
+          }
+        }
+      }
     });
     this._drawBatch = [];
   }
@@ -43,5 +51,25 @@ export class Graphics {
       x: x,
       y: y
     });
+  }
+
+  /**
+   * Draws a sprite on the game board.
+   * @param {Sprite} sprite Sprite to draw.
+   * @param {number} x X coordinate to draw the sprite.
+   * @param {number} y Y coordinate to draw the sprite.
+   */
+  drawSprite(sprite:Sprite, x:number, y:number) {
+    for (let _x = 0; _x < sprite.width; _x++) {
+      for (let _y = 0; _y < sprite.height; _y++) {
+        let point = sprite.spriteData.points[_y][_x];
+        if (point === 1) {
+          this._drawBatch.push({
+            x: x + _x,
+            y: y + _y
+          });
+        }
+      }
+    }
   }
 }

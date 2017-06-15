@@ -46,6 +46,14 @@ export class Sprite {
   }
 
   /**
+   * Returns the spriteData of the sprite.
+   * @returns {SpriteData} spriteData.
+   */
+  get spriteData():SpriteData { return this._spriteData; }
+
+  set spriteData(a) { throw new Error('SpriteData is a readonly property.'); }
+
+  /**
    * Returns the width of the sprite.
    * @returns {number} Sprite width.
    */
