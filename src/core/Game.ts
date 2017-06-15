@@ -141,7 +141,7 @@ export class Game {
   /**
    * Main game loop.
    */
-  gameUpdate() {
+  _gameUpdate() {
     /** Calculate delta time */
     this._currentTime = (new Date()).getTime();
     this._deltaTime = (this._currentTime - this._lastTime) / 1000;
@@ -157,7 +157,14 @@ export class Game {
 
     /** Loop */
     this._lastTime = this._currentTime;
-    global.requestAnimationFrame(this.gameUpdate.bind(this));
+    global.requestAnimationFrame(this._gameUpdate.bind(this));
+  }
+
+  /**
+   * Kicks off the main game loop!
+   */
+  get start() {
+    return this._gameUpdate;
   }
 
   /**
