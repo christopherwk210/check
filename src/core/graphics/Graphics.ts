@@ -65,8 +65,8 @@ export class Graphics {
         let point = sprite.spriteData.points[_y][_x];
         if (point === 1) {
           this._drawBatch.push({
-            x: x + _x,
-            y: y + _y
+            x: x + _x - sprite.spriteData.origin.x,
+            y: y + _y - sprite.spriteData.origin.y
           });
         }
       }

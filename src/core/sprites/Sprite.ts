@@ -6,10 +6,12 @@ import { SpriteData } from './spriteData.interface';
 export class Sprite {
 
   /** Options */
+  
   _spriteData: SpriteData;
   _precise: boolean;
 
   /** Properties */
+  
   _width: number = 0;
   _height: number = 0;
 
@@ -21,6 +23,9 @@ export class Sprite {
   constructor(spriteData:SpriteData, precise:boolean = false) {
     this._spriteData = spriteData;
     this._precise = precise;
+
+    /** Assign default origin */
+    if (!this._spriteData.origin) { this._spriteData.origin = { x:0, y:0 }; }    
 
     /** Calculate the width and height of the sprite */
     this._spriteData.points.forEach(pointRow => {
