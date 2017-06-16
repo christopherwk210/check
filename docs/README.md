@@ -1,4 +1,5 @@
 # Check
+[DOCS](https://christopherwk210.github.io/check/)
 A JavaScript game engine built on checkboxes ✅
 
 ### Download
