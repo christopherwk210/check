@@ -1,4 +1,6 @@
 - [Home](/)
-- Classes
-  - [Game](/classes/game.md)
-  - [Sprite](/classes/sprite.md)
+- API reference
+  - Classes
+    - [Game](/api/classes/game.md)
+    - [Sprite](/api/classes/sprite.md)
+    - [Graphics](/api/classes/graphics.md)

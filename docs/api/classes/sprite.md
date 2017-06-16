@@ -6,6 +6,8 @@ The Sprite class represents a single "sprite", or image in your game. Since we a
 var mySprite = new Check.Sprite(spriteData, precise);
 ```
 
+`precise` is a boolean that decides if the sprite should use precise collision checking. If false, collisions are checked using the sprite's bounding box (a rectangle around all the points). If true, collisions are checked per checkbox in the sprite. This is a more taxing operation, so only use when needed.
+
 # SpriteData
 
 The `spriteData` parameter is where you'll define how your sprite looks. Sprite data should look something like this:
