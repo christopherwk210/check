@@ -1,0 +1,3 @@
+- [Home](/)
+- Classes
+  - [Game](/game.md)
