@@ -1,3 +1,4 @@
 - [Home](/)
 - Classes
-  - [Game](/game.md)
+  - [Game](/classes/game.md)
+  - [Sprite](/classes/sprite.md)

@@ -24,21 +24,21 @@ defaultOptions = {
 ## start()
 This method kicks off the main game loop, effectively starting your game.
 
-## `get` mousePosition()
+## `get` mousePosition
 Returns the position of the mouse over the game board as grid coordinates in the form of an object:
 
 ```javascript
 var mousePos = game.mousePosition; // { x: 3, y: 5 }
 ```
 
-## `get` deltaTime()
+## `get` deltaTime
 Returns the delta time (ms) of each game loop. On the very first loop, this value is 0.
 
-## `get` width()
+## `get` width
 Returns the width of the game board.
 
-## `get` height()
+## `get` height
 Returns the height of the game board.
 
-## `get` graphics()
+## `get` graphics
 Returns the internal `Graphics` class reference, which allows you to perform drawing operations.
