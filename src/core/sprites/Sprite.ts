@@ -35,7 +35,7 @@ export class Sprite {
   }
 
   /**
-   * 
+   * Normalizes shorthand sprite data.
    * @param {SpriteData} spriteData Sprite data to normalize
    */
   static normalizeSpriteData(spriteData:SpriteData):SpriteData {
