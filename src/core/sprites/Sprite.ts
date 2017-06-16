@@ -21,7 +21,7 @@ export class Sprite {
    * @param {boolean} [precise=false] Use precise collision checking.
    */
   constructor(spriteData:SpriteData, precise:boolean = false) {
-    this._spriteData = spriteData;
+    this._spriteData = Sprite.normalizeSpriteData(spriteData);
     this._precise = precise;
 
     /** Assign default origin */
@@ -32,6 +32,39 @@ export class Sprite {
       this._width = pointRow.length > this._width ? pointRow.length : this._width;
       this._height++;
     });
+  }
+
+  /**
+   * 
+   * @param {SpriteData} spriteData Sprite data to normalize
+   */
+  static normalizeSpriteData(spriteData:SpriteData):SpriteData {
+    let fixedPoints:Array<Array<number>> = [];
+
+    spriteData.points.forEach(pointRow => {
+      let newRow:Array<number> = [];
+      pointRow.forEach((point, index, arr) => {
+        if (point < 0) {
+          for (let i = 0; i < (point * -1); i++) {
+            newRow.push(0);
+          }
+        } else if (point > 1) {
+          for (let i = 0; i < point; i++) {
+            newRow.push(1);
+          }
+        } else {
+          newRow.push(point);
+        }
+      });
+      fixedPoints.push(newRow);
+    });
+
+    let normalizedSprite:SpriteData = {
+      points: fixedPoints,
+      origin: spriteData.origin
+    };
+
+    return normalizedSprite;
   }
 
   /**
