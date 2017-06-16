@@ -29,7 +29,7 @@ var spriteData = {
 `points` is where you define what checkboxes should be checked for your sprite. A `1` represents a checked box, and a `0` represent an unchecked box. The `points` in the above example would render the following:
 
 <p style="text-align:center">
-  <img src="../images/simple_sprite.png">
+  <img src="./images/simple_sprite.png">
 </p>
 
 `origin` defines the point that corresponds with the sprite's position on the game board. By default, this is set to `{ x: 0, y: 0 }` which represents the top left point of the sprite. In our example, we set it to be the center of our sprite.
@@ -51,7 +51,7 @@ var spriteData = {
 The above points uses shorthand to represent longer sequences of 1's and 0's. The first row only has a single value of 5. This is translated to five 1's in a row. The second row has a -3 in the middle. This translates to three 0's in a row at that position. All together, the above points render the following:
 
 <p style="text-align:center">
-  <img src="../images/simple_sprite_shorthand.png">
+  <img src="./images/simple_sprite_shorthand.png">
 </p>
 
 ## Size
