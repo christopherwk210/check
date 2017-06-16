@@ -41,4 +41,4 @@ Returns the width of the game board.
 Returns the height of the game board.
 
 ## `get` graphics
-Returns the internal `Graphics` class reference, which allows you to perform drawing operations.
+Returns the internal [Graphics](/api/classes/graphics.md) class reference, which allows you to perform drawing operations.
