@@ -104,6 +104,7 @@ newSpriteData == {
 }
 */
 ```
+When using shorthand notation, this function will flip the signs of numbers greater than one and less than 0.
 
 ## `static` normalizeSpriteData(spriteData)
 Normalizes shorthand sprite data. This function turns shorthand sprite data points into standard points and is called *automatically* when creating a new sprite.

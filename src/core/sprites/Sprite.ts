@@ -76,7 +76,11 @@ export class Sprite {
 
     inverseSpriteData.points.forEach(pointRow => {
       pointRow.forEach((point, index, arr) => {
-        arr[index] = point === 1 ? 0 : 1;
+        if ((point > 1) || (point < 0)) {
+          arr[index] = point * -1;
+        } else {
+          arr[index] = point === 1 ? 0 : 1;          
+        }
       });
     });
 
