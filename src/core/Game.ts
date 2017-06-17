@@ -151,8 +151,14 @@ export class Game {
     /** Listen for mouse movements */
     gameBoardElement.addEventListener('mousemove', e => {
       let elementPosition = this._getElementPosition(gameBoardElement);
-      this._currentMouseCoords.x = Math.round((e.pageX - elementPosition.left) / this._checkboxDimens.width);
-      this._currentMouseCoords.y = Math.round((e.pageY - elementPosition.top) / this._checkboxDimens.height);
+
+      //** Convert mouse position to grid position */
+      let roundedX = Math.round((e.pageX - elementPosition.left) / this._checkboxDimens.width);
+      let roundedY = Math.round((e.pageY - elementPosition.top) / this._checkboxDimens.height);
+
+      //** Clamp position to be within the board */
+      this._currentMouseCoords.x = Math.max(0, Math.min(roundedX, this._width - 1));
+      this._currentMouseCoords.y = Math.max(0, Math.min(roundedY, this._height - 1));
     });
 
     return gameBoardElement;
