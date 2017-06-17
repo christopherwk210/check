@@ -1,7 +1,7 @@
 /**
  * Represents the default options every game has.
  */
-export const defaultOptions = {
+export const defaultGameOptions:any = {
   width: 15, // Width of the game board
   height: 15, // Height of the game board
   collapse: false, // Collapse the space between checkboxes

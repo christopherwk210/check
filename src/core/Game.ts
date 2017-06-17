@@ -1,5 +1,6 @@
-import { defaultOptions } from './utils/defaultOptions';
+import { defaultGameOptions } from './utils';
 import { Graphics } from './graphics';
+import { GameObject } from './game-object';
 
 declare var global:any;
 
@@ -22,6 +23,7 @@ export class Game {
 
   _gameBoard: Array<any>;
   _gameBoardContainer: Element;
+  _gameBoardObjects: Array<GameObject> = [];
 
   /** Timing control */
 
@@ -49,17 +51,17 @@ export class Game {
    * @param {Function} [options.update=function(){}] Function to execute every game frame before all other calculations.
    * @param {boolean} [options.useRadio=false] Use radio buttons instead of checkboxes.
    */
-  constructor(element: Element, options: any = defaultOptions) {
+  constructor(element: Element, options: any = defaultGameOptions) {
     if (!element) { throw new TypeError('You must provide an element to a Check Game.'); }
 
     /** Assign options */
     this._element = element;
-    this._width = options.width || defaultOptions.width;
-    this._height = options.height || defaultOptions.height;
-    this._collapse = options.collapse || defaultOptions.collapse;
-    this._hideCursor = options.hideCursor || defaultOptions.hideCursor;
-    this._update = options.update || defaultOptions.update;
-    this._useRadio = options.useRadio || defaultOptions.useRadio;
+    this._width = options.width || defaultGameOptions.width;
+    this._height = options.height || defaultGameOptions.height;
+    this._collapse = options.collapse || defaultGameOptions.collapse;
+    this._hideCursor = options.hideCursor || defaultGameOptions.hideCursor;
+    this._update = options.update || defaultGameOptions.update;
+    this._useRadio = options.useRadio || defaultGameOptions.useRadio;
 
     /** Set up the game board */
     this._gameBoard = this._createGameBoard(this._width, this._height);
@@ -188,20 +190,15 @@ export class Game {
 
     /** Process game object logics */
     this._update();
+    this._gameBoardObjects.forEach(gameObject => gameObject._update());
 
     /** Process drawing */
+    this._gameBoardObjects.forEach(gameObject => gameObject._draw(this._graphics));    
     this._graphics.draw();
 
     /** Loop */
     this._lastTime = this._currentTime;
     global.requestAnimationFrame(this._gameUpdate.bind(this));
-  }
-
-  /**
-   * Kicks off the main game loop!
-   */
-  get start() {
-    return this._gameUpdate;
   }
 
   /**
@@ -213,6 +210,25 @@ export class Game {
         checkbox.checked = false;
       });
     });
+  }
+
+  /**
+   * Adds a game object to the game board!
+   * @param {GameObject} object Game object to add to board.
+   */
+  _addObjectToBoard(object: GameObject) {
+    //** Call the object's init function */
+    object._init();
+
+    //** Append it to the board */
+    this._gameBoardObjects.push(object);
+  }
+
+  /**
+   * Kicks off the main game loop!
+   */
+  get start() {
+    return this._gameUpdate;
   }
 
   /**
