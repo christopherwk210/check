@@ -31,9 +31,10 @@ export class Game {
 
   /** Mouse control */
 
-  _currentCheckboxHovering: Element;
+  _currentMouseCoords:any = { x: 0, y: 0 };
+  _checkboxDimens: any = { width: 0, height: 0 };
 
-  /** Graphics */
+  /** Internal class refs */
 
   _graphics: Graphics;
 
@@ -90,11 +91,6 @@ export class Game {
       e.preventDefault();
     });
 
-    /** Add mouse over interaction */
-    checkbox.addEventListener('mouseover', e => {
-      this._currentCheckboxHovering = checkbox;
-    });
-
     return checkbox;
   }
 
@@ -146,7 +142,37 @@ export class Game {
     /** Add the game board to the DOM */
     element.appendChild(gameBoardElement);
 
+    /** Determine checkbox size */
+    this._checkboxDimens.width = this._gameBoard[0][0].offsetWidth;
+    this._checkboxDimens.height = this._gameBoard[0][0].offsetHeight;
+
+    /** Listen for mouse movements */
+    gameBoardElement.addEventListener('mousemove', e => {
+      let elementPosition = this._getElementPosition(gameBoardElement);
+      this._currentMouseCoords.x = Math.round((e.pageX - elementPosition.left) / this._checkboxDimens.width);
+      this._currentMouseCoords.y = Math.round((e.pageY - elementPosition.top) / this._checkboxDimens.height);
+    });
+
     return gameBoardElement;
+  }
+
+  /**
+   * Returns the true position of an element.
+   * @param {Element} e Element to get the position of. 
+   */
+  _getElementPosition(e:any):any {
+    let curLeft = 0,
+        curTop = 0;
+
+    do {
+			curLeft += e.offsetLeft;
+			curTop += e.offsetTop;
+    } while (e = e.offsetParent);
+
+    return {
+      left: curLeft,
+      top: curTop
+    };
   }
 
   /**
@@ -189,18 +215,11 @@ export class Game {
     });
   }
 
+  /**
+   * Returns the position of the mouse.
+   */
   get mousePosition():any {
-    let mousePosition:any = {
-      x: 0,
-      y: 0
-    }
-    if (this._currentCheckboxHovering) {
-      mousePosition.y = Number(this._currentCheckboxHovering.id.split('-')[0]);
-      mousePosition.x = Number(this._currentCheckboxHovering.id.split('-')[1]);
-      return mousePosition;
-    } else {
-      return mousePosition;
-    }
+    return this._currentMouseCoords;
   }
 
   /**
