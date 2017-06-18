@@ -238,6 +238,13 @@ export class Game {
   }
 
   /**
+   * Adds a game object to the game board!
+   */
+  get addObjectToBoard():any {
+    return this._addObjectToBoard;
+  }
+
+  /**
    * Returns the position of the mouse.
    */
   get mousePosition():any {
