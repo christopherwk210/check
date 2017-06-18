@@ -4,3 +4,4 @@
     - [Game](/api/classes/game.md)
     - [Sprite](/api/classes/sprite.md)
     - [Graphics](/api/classes/graphics.md)
+    - [GameObject](/api/classes/game-object.md)
