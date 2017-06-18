@@ -24,6 +24,9 @@ defaultOptions = {
 ## start()
 This method kicks off the main game loop, effectively starting your game.
 
+## addObjectToBoard(object)
+Adds a game object to the board.
+
 ## `get` mousePosition
 Returns the position of the mouse over the game board as grid coordinates in the form of an object:
 

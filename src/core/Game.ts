@@ -222,7 +222,7 @@ export class Game {
    * Adds a game object to the game board!
    * @param {GameObject} object Game object to add to board.
    */
-  _addObjectToBoard(object: GameObject) {
+  addObjectToBoard(object: GameObject) {
     //** Call the object's init function */
     object._init();
 
@@ -235,13 +235,6 @@ export class Game {
    */
   get start() {
     return this._gameUpdate;
-  }
-
-  /**
-   * Adds a game object to the game board!
-   */
-  get addObjectToBoard():any {
-    return this._addObjectToBoard;
   }
 
   /**

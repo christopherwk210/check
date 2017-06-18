@@ -46,7 +46,7 @@ export class GameObject {
     
     /** Auto add to game board */
     if (options.autoAddToGameBoard || defaultGameObjectOptions.autoAddToGameBoard) {
-      game._addObjectToBoard(this);
+      game.addObjectToBoard(this);
     }
   }
 }
