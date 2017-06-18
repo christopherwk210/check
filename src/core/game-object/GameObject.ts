@@ -25,10 +25,9 @@ export class GameObject {
    * @param {number} [options.x=0] // The starting X position of the game object on the board.
    * @param {number} [options.y=0] // The starting Y position of the game object on the board.
    * @param {Sprite} [sprite] // The sprite that belongs to the game object.
-   * @param {boolean} [autoAddToGameBoard=false] // Add the game object to the board on creation.
    * @param {Function} [init] // Function to call when the game object is first added to the game board.
    * @param {Function} [update] // Function to call every game frame.
-   * @param {Function} [draw=selfDrawFunction(graphics)] // Function that is called at the end of every game frame, and is passed a reference to the graphics class.
+   * @param {Function} [draw=selfDrawFunction(id, graphics)] // Function that is called at the end of every game frame, and is passed a reference to the graphics class.
    * @param {Function} [destroy] // Function to call when the game object is removed from the board.
    */
   constructor(game: Game, options:any = defaultGameObjectOptions) {
@@ -43,10 +42,5 @@ export class GameObject {
     this._update = options.update || defaultGameObjectOptions.update;
     this._draw = options.draw || defaultGameObjectOptions.draw;
     this._destroy = options.destroy || defaultGameObjectOptions.destroy;
-    
-    /** Auto add to game board */
-    if (options.autoAddToGameBoard || defaultGameObjectOptions.autoAddToGameBoard) {
-      game.addObjectToBoard(this);
-    }
   }
 }

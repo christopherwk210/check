@@ -25,7 +25,10 @@ defaultOptions = {
 This method kicks off the main game loop, effectively starting your game.
 
 ## addObjectToBoard(object)
-Adds a game object to the board.
+Adds a game object to the board, and returns the instance id for that object. Whenever you add an object to the game board, the instance id this returns represents that exact instance of the object. This is helpful for when you need to reference that specific object, since you can multiple instances of the same object to the board.
+
+## removeObjectFromBoard(id)
+This removes an instance from the game board. This will trigger the destroy method of the object destroyed.
 
 ## `get` mousePosition
 Returns the position of the mouse over the game board as grid coordinates in the form of an object:

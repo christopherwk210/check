@@ -23,7 +23,11 @@ export class Game {
 
   _gameBoard: Array<any>;
   _gameBoardContainer: Element;
-  _gameBoardObjects: Array<GameObject> = [];
+  _gameBoardObjects: Array<any> = [];
+
+  /** Instance control */
+
+  _instance_id: number = 0;
 
   /** Timing control */
 
@@ -196,10 +200,10 @@ export class Game {
 
     /** Process game object logics */
     this._update();
-    this._gameBoardObjects.forEach(gameObject => gameObject._update());
+    this._gameBoardObjects.forEach(instance => instance.object._update(instance.id));
 
     /** Process drawing */
-    this._gameBoardObjects.forEach(gameObject => gameObject._draw(this._graphics));    
+    this._gameBoardObjects.forEach(instance => instance.object._draw(instance.id, this._graphics));    
     this._graphics.draw();
 
     /** Loop */
@@ -221,13 +225,42 @@ export class Game {
   /**
    * Adds a game object to the game board!
    * @param {GameObject} object Game object to add to board.
+   * @returns {number} The object instance id.
    */
   addObjectToBoard(object: GameObject) {
-    //** Call the object's init function */
-    object._init();
+    this._instance_id++;
 
     //** Append it to the board */
-    this._gameBoardObjects.push(object);
+    this._gameBoardObjects.push({
+      id: this._instance_id,
+      object: object
+    });
+
+    //** Call the object's init function */
+    object._init(this._instance_id);
+
+    return this._instance_id;
+  }
+
+  /**
+   * Removes a game object from the board.
+   * @param {number} id The object instance id to remove.
+   */
+  removeObjectFromBoard(id: number) {
+    let removePosition: number = 0;
+
+    /** Find the instance */
+    this._gameBoardObjects.forEach((instance, index) => {
+      if (instance.id === id) {
+
+        /** Run destroy code */
+        instance.object._destroy();
+        removePosition = index;
+      }
+    });
+
+    /** DELETE ALL PICTURES OF RON */
+    this._gameBoardObjects.splice(removePosition, 1);
   }
 
   /**
