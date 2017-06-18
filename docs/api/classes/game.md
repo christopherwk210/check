@@ -15,9 +15,11 @@ defaultOptions = {
   collapse: false, // Collapse the space between checkboxes
   hideCursor: false, // Hide the cursor over the gameboard
   useRadio: false, // Use radio inputs instead of checkboxes
-  update: function(){} // Callback function that triggers at the start of every game loop
+  update: function(){} // Callback function that triggers at the start of every game loop.
 }
 ```
+
+The update function will be called every game loop *before* the update function of every object.
 
 # Methods
 
