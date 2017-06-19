@@ -44,6 +44,67 @@ export class GameObject {
     this._destroy = options.destroy || defaultGameObjectOptions.destroy;
   }
 
+  /**
+   * Tests for a collision with another game object.
+   * @param {GameObject|number} object Game object or object ID to check collision with.
+   * @returns {boolean} Whether or not there is a collision.
+   */
+  checkCollision(object:any):boolean {
+    let otherObject:any;
+
+    /** If an ID is provided, find the object */
+    if (typeof(object) === 'number') {
+      let found = this._game.getObjectById(object);
+      if (found === -1) {
+        return false;
+      } else {
+        otherObject = found;
+      }
+    } else {
+      otherObject = object;
+    }
+
+    if (!otherObject.sprite.precise) {
+      return this._checkRectanglesIntersecting({
+        x: this.x - this.sprite.spriteData.origin.x,
+        y: this.y - this.sprite.spriteData.origin.y,
+        width: this.sprite.width,
+        height: this.sprite.height
+      }, {
+        x: otherObject.x - otherObject.sprite.spriteData.origin.x,
+        y: otherObject.y - otherObject.sprite.spriteData.origin.y,
+        width: otherObject.sprite.width,
+        height: otherObject.sprite.height
+      });
+    }
+
+  }
+
+  /**
+   * Tests for collision between two rectangles.
+   * @param {Object} rect1 The first rectangle.
+   * @param {number} rect1.x rect1 X position.
+   * @param {number} rect1.y rect1 Y position.
+   * @param {number} rect1.width rect1 width.
+   * @param {number} rect1.height rect1 height.
+   * @param {Object} rect2 The second rectangle.
+   * @param {number} rect2.x rect2 X position.
+   * @param {number} rect2.y rect2 Y position.
+   * @param {number} rect2.width rect2 width.
+   * @param {number} rect2.height rect2 height.
+   * @returns {boolean} If there is a collision.
+   */
+  _checkRectanglesIntersecting(rect1:any, rect2:any):boolean {
+    if (rect1.x < rect2.x + rect2.width &&
+      rect1.x + rect1.width > rect2.x &&
+      rect1.y < rect2.y + rect2.height &&
+      rect1.height + rect1.y > rect2.y) {
+        return true;
+    } else {
+      return false;
+    }
+  }
+
   /** Property getters/setters */
 
   set x(x:number) { this._x = x; }

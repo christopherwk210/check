@@ -137,6 +137,14 @@ export class Sprite {
   set spriteData(a) { this._spriteData = a; }
 
   /**
+   * Returns if the sprite is precise.
+   * @returns {boolean} Sprite is precise.
+   */
+  get precise():boolean { return this._precise; }
+
+  set precise(a:boolean) { this._precise = a; }
+
+  /**
    * Returns the width of the sprite.
    * @returns {number} Sprite width.
    */

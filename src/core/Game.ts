@@ -264,6 +264,24 @@ export class Game {
   }
 
   /**
+   * Returns a game object with the give id, or -1 if none were found.
+   * @param {number} id Id of the object to get.
+   * @returns {GameObject|number} The found game object or -1.
+   */
+  getObjectById(id: number):GameObject|number {
+    let found:any = -1;
+
+    /** Find the instance */
+    this._gameBoardObjects.forEach((instance, index) => {
+      if (instance.id === id) {
+        found = instance;
+      }
+    });
+
+    return found;
+  }
+
+  /**
    * Kicks off the main game loop!
    */
   get start() {
