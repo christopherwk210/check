@@ -72,6 +72,65 @@ Your sprite will have a width of 5 and a height of 3, *even though* there are no
 
 # Methods
 
+## text(str, characterMap?)
+Sometimes you may want to show a text message to the player. This method will allow you to do that by constructing valid sprite data with text symbols for each character in `str`. The optional parameter `characterMap` allows you to supply custom rules that ddefine how each symbol will appear. When omitted, the default character map that ships with Check will be used.
+
+The sprite data returned from this function will have an origin of `0,0`.
+
+### Custom Character Map
+To define a custom character map, you must pass an object that looks like the following:
+
+```javascript
+{
+  options: {
+    spacing: 1
+  },
+  characters: {
+    'a': [
+      [4],
+      [1, -2, 1],
+      [4],
+      [1, -2, 1],
+      [1, -2, 1]
+    ],
+    'b': [
+      [3, 0],
+      [1, 0, 1, 0],
+      [4],
+      [1, -2, 1],
+      [4]
+    ],
+    ...
+  }
+}
+```
+
+`options.spacing` defines the amount of spaces between each character. `characters` is an object that should contain all the symbols you wish you use, defined as spriteData points.
+
+It's important that every character in your character map has consistent row widths. This doesn't mean your character map has to represent a mono space font, but that every *row* of each character is of equal width. For example, this is good:
+```javascript
+'1': [
+  [0, 1, 0],
+  [2, 0],
+  [0, 1, 0],
+  [0, 1, 0],
+  [3]
+]
+```
+and this is not:
+```javascript
+'1': [
+  [0, 1],
+  [2, 0],
+  [0, 1],
+  [0, 1],
+  [3]
+]
+```
+When a character is not one equal width, the padding between characters will be off.
+
+If you don't provide certain characters, they will just be omitted when generating the sprite data if they are present in the string.
+
 ## `get` spriteData
 Returns the spriteData of the sprite.
 
