@@ -45,6 +45,9 @@ This function is called when the object is removed from the board.
 ## checkCollision(object|id)
 Returns true or false depending on if the object is colliding with a given object or instance.
 
+## checkCollisionPoint(object|id, x, y)
+Returns true or false depending on if the object would collide with a given object or instance at a certain position.
+
 ## `get` x
 Returns the object's x position in the room.
 
