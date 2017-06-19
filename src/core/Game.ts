@@ -31,8 +31,8 @@ export class Game {
 
   /** Timing control */
 
-  _currentTime: number = 0;
-  _lastTime: number;
+  _currentTime: number = (new Date()).getTime();
+  _lastTime: number = (new Date()).getTime();
   _deltaTime: number = 0;
 
   /** Mouse control */
