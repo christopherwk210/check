@@ -130,7 +130,11 @@ export class Sprite {
    */
   get spriteData():SpriteData { return this._spriteData; }
 
-  set spriteData(a) { throw new Error('SpriteData is a readonly property.'); }
+  /**
+   * Sets the sprite data of the sprite
+   * @param {SpriteData} a New sprite data.
+   */
+  set spriteData(a) { this._spriteData = a; }
 
   /**
    * Returns the width of the sprite.

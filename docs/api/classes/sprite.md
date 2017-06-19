@@ -75,6 +75,9 @@ Your sprite will have a width of 5 and a height of 3, *even though* there are no
 ## `get` spriteData
 Returns the spriteData of the sprite.
 
+## `set` spriteData(spriteData)
+Set new sprite data for the sprite.
+
 ## `get` width
 Returns the sprite width.
 
