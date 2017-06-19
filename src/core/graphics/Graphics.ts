@@ -47,6 +47,9 @@ export class Graphics {
    * @param {number} y Y coordinate of the point.
    */
   drawPoint(x:number, y:number) {
+    x = Math.floor(x);
+    y = Math.floor(y);
+
     this._drawBatch.push({
       x: x,
       y: y
@@ -60,6 +63,9 @@ export class Graphics {
    * @param {number} y Y coordinate to draw the sprite.
    */
   drawSprite(sprite:Sprite, x:number, y:number) {
+    x = Math.floor(x);
+    y = Math.floor(y);
+
     for (let _x = 0; _x < sprite.width; _x++) {
       for (let _y = 0; _y < sprite.height; _y++) {
         let point = sprite.spriteData.points[_y][_x];
