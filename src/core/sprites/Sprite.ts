@@ -1,4 +1,5 @@
 import { SpriteData } from './spriteData.interface'; 
+import { defaultCharacterMap } from './defaultCharacterMap';
 
 /**
  * Sprite class, represents a graphical asset usable by the game.
@@ -32,6 +33,37 @@ export class Sprite {
       this._width = pointRow.length > this._width ? pointRow.length : this._width;
       this._height++;
     });
+  }
+
+  /**
+   * Returns sprite data of text characters.
+   * @param {string} str Text to use.
+   * @param {Object} characterMap Character map to use.
+   * @returns {SpriteData} Constructed sprite data.
+   */
+  static text(str:string, characterMap=defaultCharacterMap):SpriteData {
+    let textSpriteData:SpriteData = { points: [] };
+
+    for (var i = 0, len = str.length; i < len; i++) {
+      let charPoints = characterMap.characters[str[i]];
+      if (charPoints) {
+        charPoints.forEach((charRow:any, index:number) => {
+          if (textSpriteData.points[index]) {
+            textSpriteData.points[index] = [
+              ...textSpriteData.points[index],
+              -characterMap.options.spacings,
+              ...charRow
+            ];
+          } else {
+            textSpriteData.points[index] = [
+              ...charRow
+            ];
+          }
+        });
+      }
+    }
+
+    return this.normalizeSpriteData(textSpriteData);
   }
 
   /**
