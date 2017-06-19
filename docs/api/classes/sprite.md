@@ -137,6 +137,12 @@ Returns the spriteData of the sprite.
 ## `set` spriteData(spriteData)
 Set new sprite data for the sprite.
 
+## `get` precise
+Returns if the sprite is precise.
+
+## `set` precise(precise)
+Sets if the sprite should use precise collision checking.
+
 ## `get` width
 Returns the sprite width.
 

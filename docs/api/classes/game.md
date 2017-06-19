@@ -32,6 +32,9 @@ Adds a game object to the board, and returns the instance id for that object. Wh
 ## removeObjectFromBoard(id)
 This removes an instance from the game board. This will trigger the destroy method of the object destroyed.
 
+## getObjectById(id)
+Returns an object for the given id, or -1 if none could be found.
+
 ## `get` mousePosition
 Returns the position of the mouse over the game board as grid coordinates in the form of an object:
 
