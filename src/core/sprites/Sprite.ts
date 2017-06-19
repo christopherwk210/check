@@ -63,6 +63,11 @@ export class Sprite {
       }
     }
 
+    textSpriteData.origin = {
+      x: 0,
+      y: 0
+    };
+
     return this.normalizeSpriteData(textSpriteData);
   }
 
