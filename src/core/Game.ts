@@ -31,7 +31,7 @@ export class Game {
 
   /** Timing control */
 
-  _currentTime: number;
+  _currentTime: number = 0;
   _lastTime: number;
   _deltaTime: number = 0;
 
@@ -193,7 +193,7 @@ export class Game {
   _gameUpdate() {
     /** Calculate delta time */
     this._currentTime = (new Date()).getTime();
-    this._deltaTime = (this._currentTime - this._lastTime) / 1000;
+    this._deltaTime = (this._currentTime - this._lastTime);
     
     /** Clear the game board */
     this._clearBoard();
