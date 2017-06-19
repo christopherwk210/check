@@ -39,3 +39,23 @@ This function is called at the end of every frame, and is passed a graphics refe
 
 ## destroy()
 This function is called when the object is removed from the board.
+
+# Methods
+
+## `get` x
+Returns the object's x position in the room.
+
+## `set` x
+Sets the object's x position in the room.
+
+## `get` y
+Returns the object's y position in the room.
+
+## `set` y
+Sets the object's y position in the room.
+
+## `get` sprite
+Returns the object's sprite.
+
+## `set` sprite
+Sets the object's sprite.

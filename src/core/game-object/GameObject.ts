@@ -43,4 +43,13 @@ export class GameObject {
     this._draw = options.draw || defaultGameObjectOptions.draw;
     this._destroy = options.destroy || defaultGameObjectOptions.destroy;
   }
+
+  /** Property getters/setters */
+
+  set x(x:number) { this._x = x; }
+  get x() { return this._x; }
+  set y(y:number) { this._y = y; }
+  get y() { return this._y; }
+  set sprite(sprite:Sprite) { this._sprite = sprite; }
+  get sprite() { return this._sprite; }
 }
