@@ -4,4 +4,5 @@
     - [Game](/api/classes/game.md)
     - [Sprite](/api/classes/sprite.md)
     - [Graphics](/api/classes/graphics.md)
+    - [InputManager](/api/classes/input-manager.md)
     - [GameObject](/api/classes/game-object.md)

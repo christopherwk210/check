@@ -35,13 +35,6 @@ This removes an instance from the game board. This will trigger the destroy meth
 ## getObjectById(id)
 Returns an object for the given id, or -1 if none could be found.
 
-## `get` mousePosition
-Returns the position of the mouse over the game board as grid coordinates in the form of an object:
-
-```javascript
-var mousePos = game.mousePosition; // { x: 3, y: 5 }
-```
-
 ## `get` deltaTime
 Returns the delta time (ms) of each game loop. On the very first loop, this value is 0.
 
@@ -53,3 +46,6 @@ Returns the height of the game board.
 
 ## `get` graphics
 Returns the internal [Graphics](/api/classes/graphics.md) class reference, which allows you to perform drawing operations.
+
+## `get` input
+Returns the internal [InputManager](/api/classes/input-manager.md) class reference, which allows you to handle user input.
