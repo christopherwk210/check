@@ -75,6 +75,7 @@ export class GameObject {
       otherObject = object;
     }
 
+    //TODO: Add precise collision checking
     if (!otherObject.sprite.precise) {
       return this._checkRectanglesIntersecting({
         x: x - this.sprite.spriteData.origin.x,

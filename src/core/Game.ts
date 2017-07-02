@@ -1,6 +1,7 @@
 import { defaultGameOptions } from './utils';
 import { Graphics } from './graphics';
 import { GameObject } from './game-object';
+import { InputManager } from './input-manager';
 
 declare var global:any;
 
@@ -24,6 +25,7 @@ export class Game {
   _gameBoard: Array<any>;
   _gameBoardContainer: Element;
   _gameBoardObjects: Array<any> = [];
+  _checkboxDimens: any = { width: 0, height: 0 };
 
   /** Instance control */
 
@@ -35,14 +37,10 @@ export class Game {
   _lastTime: number = (new Date()).getTime();
   _deltaTime: number = 0;
 
-  /** Mouse control */
-
-  _currentMouseCoords:any = { x: 0, y: 0 };
-  _checkboxDimens: any = { width: 0, height: 0 };
-
   /** Internal class refs */
 
   _graphics: Graphics;
+  _inputManager: InputManager;
 
   /**
    * Initializes the game and appends game board to the DOM.
@@ -73,6 +71,9 @@ export class Game {
 
     /** Set up graphics */
     this._graphics = new Graphics(this._width, this._height, this._gameBoard);
+
+    /** Set up input manager */
+    this._inputManager = new InputManager(this._gameBoardContainer, this._width, this._height, this._checkboxDimens);
   }
 
   /**
@@ -152,39 +153,7 @@ export class Game {
     this._checkboxDimens.width = this._gameBoard[0][0].offsetWidth;
     this._checkboxDimens.height = this._gameBoard[0][0].offsetHeight;
 
-    /** Listen for mouse movements */
-    gameBoardElement.addEventListener('mousemove', e => {
-      let elementPosition = this._getElementPosition(gameBoardElement);
-
-      //** Convert mouse position to grid position */
-      let roundedX = Math.round((e.pageX - elementPosition.left) / this._checkboxDimens.width);
-      let roundedY = Math.round((e.pageY - elementPosition.top) / this._checkboxDimens.height);
-
-      //** Clamp position to be within the board */
-      this._currentMouseCoords.x = Math.max(0, Math.min(roundedX, this._width - 1));
-      this._currentMouseCoords.y = Math.max(0, Math.min(roundedY, this._height - 1));
-    });
-
     return gameBoardElement;
-  }
-
-  /**
-   * Returns the true position of an element.
-   * @param {Element} e Element to get the position of. 
-   */
-  _getElementPosition(e:any):any {
-    let curLeft = 0,
-        curTop = 0;
-
-    do {
-			curLeft += e.offsetLeft;
-			curTop += e.offsetTop;
-    } while (e = e.offsetParent);
-
-    return {
-      left: curLeft,
-      top: curTop
-    };
   }
 
   /**
@@ -289,13 +258,6 @@ export class Game {
   }
 
   /**
-   * Returns the position of the mouse.
-   */
-  get mousePosition():any {
-    return this._currentMouseCoords;
-  }
-
-  /**
    * Returns the delta time of the game loop.
    * @returns {number} Delta time.
    */
@@ -326,4 +288,12 @@ export class Game {
   get graphics():Graphics { return this._graphics; }
 
   set graphics(a) { throw new Error('Graphics is a readonly property.'); }
+
+  /**
+   * Returns the input manager reference.
+   * @returns {InputManager} Input manager object reference.
+   */
+  get input():InputManager { return this._inputManager; }
+
+  set input(a) { throw new Error('Input is a readonly property.'); }
 }
