@@ -50,33 +50,7 @@ export class GameObject {
    * @returns {boolean} Whether or not there is a collision.
    */
   checkCollision(object:any):boolean {
-    let otherObject:any;
-
-    /** If an ID is provided, find the object */
-    if (typeof(object) === 'number') {
-      let found = this._game.getObjectById(object);
-      if (found === -1) {
-        return false;
-      } else {
-        otherObject = found;
-      }
-    } else {
-      otherObject = object;
-    }
-
-    if (!otherObject.sprite.precise) {
-      return this._checkRectanglesIntersecting({
-        x: this.x - this.sprite.spriteData.origin.x,
-        y: this.y - this.sprite.spriteData.origin.y,
-        width: this.sprite.width,
-        height: this.sprite.height
-      }, {
-        x: otherObject.x - otherObject.sprite.spriteData.origin.x,
-        y: otherObject.y - otherObject.sprite.spriteData.origin.y,
-        width: otherObject.sprite.width,
-        height: otherObject.sprite.height
-      });
-    }
+    return this.checkCollisionPoint(object, this.x, this.y);
   }
 
   /**
