@@ -4,6 +4,15 @@ This class handles user input by way of the mouse and keyboard. Touchscreen inpu
 
 # Methods
 
+## isKeyDown(keycode)
+Returns if the key with the given ASCII keycode is currently being held:
+
+```javascript
+if (game.input.isKeyDown(13)) {
+  alert('You pressed the return key!');
+}
+```
+
 ## `get` mousePosition
 Returns the position of the mouse over the game board as grid coordinates in the form of an object:
 
