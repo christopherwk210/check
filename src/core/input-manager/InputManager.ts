@@ -77,6 +77,15 @@ export class InputManager {
   }
 
   /**
+   * Returns the ascii code of the character in the first position of
+   * a given string.
+   * @param {string} key String containing the character you want the ascii code of.
+   */
+  static ascii(key:string) {
+    return key.charCodeAt(0);
+  }
+
+  /**
    * Returns if a key with the provided code is currently being held.
    * @param {number} keycode Keycode of the key you want to check.
    */

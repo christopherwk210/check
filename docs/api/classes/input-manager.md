@@ -19,3 +19,6 @@ Returns the position of the mouse over the game board as grid coordinates in the
 ```javascript
 var mousePos = game.input.mousePosition; // { x: 3, y: 5 }
 ```
+
+## `static` ascii(key)
+Returns the ascii code of the first character located in the string `key`.
