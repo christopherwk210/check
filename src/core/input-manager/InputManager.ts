@@ -16,6 +16,10 @@ export class InputManager {
 
   _currentMouseCoords:any = { x: 0, y: 0 };
 
+  /** Keyboard control */
+
+  _currentKeys:any = {};
+
   /**
    * Set up the input manager to listen to user input.
    * @param {Element} gameBoardElement A reference to the game board container.
@@ -54,14 +58,30 @@ export class InputManager {
     });
   }
 
+  /**
+   * Binds keyboard input to the body object and keeps track of what
+   * keys are being pressed.
+   */
   _bindKeyboardInput() {
+    /** Add keydown listener */
     document.body.addEventListener('keydown', e => {
-      console.log(e);
+      this._currentKeys[e.which] = this._currentKeys[e.which] || {};
+      this._currentKeys[e.which].down = true;
     });
 
+    /** Add keyup listener */
     document.body.addEventListener('keyup', e => {
-      console.log(e);
+      this._currentKeys[e.which] = this._currentKeys[e.which] || {};
+      this._currentKeys[e.which].down = false;
     });
+  }
+
+  /**
+   * Returns if a key with the provided code is currently being held.
+   * @param {number} keycode Keycode of the key you want to check.
+   */
+  isKeyDown(keycode:number) {
+    return this._currentKeys[keycode] ? this._currentKeys[keycode].down : false;
   }
 
   /**
