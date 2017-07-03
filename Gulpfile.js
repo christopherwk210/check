@@ -31,7 +31,21 @@ function bundle() {
         .pipe(gulp.dest('dist'));
 }
 
-gulp.task('build', function () {
+gulp.task('build.dev', function() {
+    return browserify({
+        basedir: '.',
+        debug: true,
+        entries: ['src/app.ts'],
+        cache: {},
+        packageCache: {}
+    })
+    .plugin(tsify)
+    .bundle()
+    .pipe(source('Check.js'))
+    .pipe(gulp.dest("dist"));
+});
+
+gulp.task('build.prod', function () {
     return browserify({
         basedir: '.',
         debug: true,

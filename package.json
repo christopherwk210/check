@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A JavaScript game engine built on checkboxes.",
   "scripts": {
-    "build": "gulp build",
+    "build": "gulp build.prod",
     "docs": "docsify serve ./docs",
     "start": "gulp"
   },
