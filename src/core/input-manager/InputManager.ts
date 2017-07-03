@@ -31,6 +31,9 @@ export class InputManager {
 
     /** Set up mouse tracking */
     this._bindMouseMovement();
+
+    /** Set up keboard tracking */
+    this._bindKeyboardInput();
   }
 
   /**
@@ -48,6 +51,16 @@ export class InputManager {
       //** Clamp position to be within the board */
       this._currentMouseCoords.x = Math.max(0, Math.min(roundedX, this._boardWidth - 1));
       this._currentMouseCoords.y = Math.max(0, Math.min(roundedY, this._boardHeight - 1));
+    });
+  }
+
+  _bindKeyboardInput() {
+    document.body.addEventListener('keydown', e => {
+      console.log(e);
+    });
+
+    document.body.addEventListener('keyup', e => {
+      console.log(e);
     });
   }
 
