@@ -65,6 +65,11 @@ export class Game {
     this._update = options.update || defaultGameOptions.update;
     this._useRadio = options.useRadio || defaultGameOptions.useRadio;
 
+    /** Make sure we have a good sized board */
+    if ((this._width <= 0) || (this._height <= 0)) {
+      throw new Error('The game board must have a width and height that are greater than 0!');
+    }
+
     /** Set up the game board */
     this._gameBoard = this._createGameBoard(this._width, this._height);
     this._gameBoardContainer = this._bootstrapGameBoard(this._element, this._gameBoard);
