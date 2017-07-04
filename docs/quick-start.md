@@ -155,4 +155,4 @@ var myFirstObject = new Check.GameObject(game, {
 });
 ```
 
-We're all done! Now, our smiley face follows the mouse when we move it over the game board. You can see a live version of this example <a target="_blank" href="/examples/quick-start/index.html">here</a>.
+We're all done! Now, our smiley face follows the mouse when we move it over the game board. You can see a live version of this example <a target="_blank" href="./examples/quick-start/index.html">here</a>.
