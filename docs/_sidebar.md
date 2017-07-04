@@ -1,5 +1,6 @@
 - [Home](/)
 - [Quick Start](/quick-start.md)
+- [Examples](/examples.md)
 - API reference
   - Classes
     - [Game](/api/classes/game.md)
