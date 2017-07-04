@@ -72,7 +72,7 @@ Your sprite will have a width of 5 and a height of 3, *even though* there are no
 
 # Methods
 
-## text(str, characterMap?)
+## `static` text(str, characterMap?)
 Sometimes you may want to show a text message to the player. This method will allow you to do that by constructing valid sprite data with text symbols for each character in `str`. The optional parameter `characterMap` allows you to supply custom rules that ddefine how each symbol will appear. When omitted, the default character map that ships with Check will be used.
 
 The sprite data returned from this function will have an origin of `0,0`.
