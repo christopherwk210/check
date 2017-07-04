@@ -142,7 +142,7 @@ var myFirstObject = new Check.GameObject(game, {
 });
 ```
 
-Now that we have the mouse coordinates, we need to make our object change it's position. We can do that modifying the `x` and `y` properties of our object:
+Now that we have the mouse coordinates, we need to make our object change it's position. We can do that by modifying the `x` and `y` properties of our object:
 
 ```javascript
 var myFirstObject = new Check.GameObject(game, {
@@ -155,4 +155,4 @@ var myFirstObject = new Check.GameObject(game, {
 });
 ```
 
-We're all done! Now, our smiley face follows the mouse when we move it over the game board. Our first game is so cool!
+We're all done! Now, our smiley face follows the mouse when we move it over the game board.
