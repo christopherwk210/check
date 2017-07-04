@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>check</title>
+  </head>
+  <body>
+    <div id="game"></div>
+
+    <script src="../../../dist/Check.min.js"></script>
+    <script>
+    // Create a Check game
+    var game = new Check.Game(document.getElementById('game'), {
+      collapse: true
+    });
+
+    // Create a cool sprite
+    var myFirstSprite = new Check.Sprite({
+      points: [
+        [1, 0, 1],
+        [0],
+        [1, 0, 1],
+        [1, 1, 1]
+      ]
+    });
+
+    // Create a game object
+    var myFirstObject = new Check.GameObject(game, {
+      sprite: myFirstSprite,
+      update: function() {
+        var mousePos = game.input.mousePosition; // Holds mouse coordinates!
+        this.x = mousePos.x;
+        this.y = mousePos.y;
+      }
+    });
+
+    // Add it to the board
+    game.addObjectToBoard(myFirstObject);
+
+    // Start our very first game!
+    game.start();
+    </script>
+  </body>
+</html>
